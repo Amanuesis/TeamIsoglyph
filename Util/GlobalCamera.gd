@@ -71,6 +71,8 @@ func get_center() -> Vector2:
 	return influence
 
 func register_primary_focus(entity):
+	if entity == null:
+		return
 	if entity is Target:
 		primary_focus.append(entity)
 	elif entity is Vector2 or entity is Object:

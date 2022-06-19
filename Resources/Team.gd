@@ -7,6 +7,8 @@ export var team_color : Color
 var team_members : = []
 var current_member_index : = 0
 
+onready var team_manager : = get_parent()
+
 func _ready():
 	for child in get_children():
 		register_team_member(child)
@@ -29,7 +31,10 @@ func defeated():
 	return true
 	
 func current_member():
-	return get_child(current_member_index)
+	var team_member: = get_child(current_member_index)
+	if team_member.can_act != true:
+		team_member = next_member()
+	return team_member
 	
 func register_team_member(member:Object):
 	team_members.append(member)

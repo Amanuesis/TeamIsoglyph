@@ -101,19 +101,20 @@ team_color = Color( 1, 0.141176, 0, 1 )
 position = Vector2( 2019, -14 )
 script = ExtResource( 12 )
 
-[node name="Navigation2D" type="Navigation2D" parent="."]
-
-[node name="Room" type="TileMap" parent="Navigation2D"]
+[node name="Room" type="TileMap" parent="."]
 z_index = -1
 tile_set = SubResource( 5 )
+cell_tile_origin = 1
 format = 1
 script = ExtResource( 3 )
 
-[node name="RoomGenerator" parent="Navigation2D/Room" instance=ExtResource( 2 )]
+[node name="RoomGenerator" parent="Room" instance=ExtResource( 2 )]
 show_behind_parent = true
 steps = 3
-fill_percent = 0.345
-random_seed = 1.683
+fill_percent = 0.398
+random_seed = 1.142
 simulate_ca = true
 
 [node name="Line2D" type="Line2D" parent="."]
+
+[node name="Tween" type="Tween" parent="."]

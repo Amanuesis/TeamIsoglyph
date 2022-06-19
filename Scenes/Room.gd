@@ -2,7 +2,6 @@ extends TileMap
 
 onready var room_generator : = $RoomGenerator
 
-
 signal room_built
 
 func _ready():

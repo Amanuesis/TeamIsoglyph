@@ -2,18 +2,27 @@ extends Node2D
 
 signal all_teams_acted
 
+onready var parent : = get_parent()
+onready var camera : = parent.get_node("Camera2D")
+
 var team_script : = preload("res://Resources/Team.gd")
 
 func current_team():
 	return get_child(0)
 
 func current_member():
-	return current_team().current_member()
+	var current_entity = current_team().current_member()
+	if current_entity == null:
+		pass_turn()
+		return current_member()
+	return current_entity
 
 func pass_turn():
-	if current_member().defeated():
+	if current_team().defeated():
 		remove_team(current_member())
 	move_child(current_team(), get_child_count() - 1)
+	current_team().start_turn()
+	
 		
 func game_over():
 	return get_child_count() <= 1

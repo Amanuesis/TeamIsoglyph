@@ -16,8 +16,10 @@ var ca_shader : = preload("res://Shaders/CA.shader")
 var current_steps : = steps
 
 signal done
+
 func _ready():
 	start()
+
 func start():
 	if not Engine.editor_hint:
 		self.simulate_ca = false
@@ -66,8 +68,8 @@ func _process(delta):
 		
 func set_random_seed(new_seed : float) :
 	random_seed = new_seed
-	if Engine.editor_hint:	
-		$GPUGeneration/Viewport/Sprite.material.set_shader_param("rand_seed", new_seed)
+	$GPUGeneration/Viewport/Sprite.material.set_shader_param("rand_seed", new_seed)
+	if Engine.editor_hint:		
 		reset()
 #		if simulate_ca:
 #			yield(VisualServer, "frame_post_draw")	
@@ -76,8 +78,8 @@ func set_random_seed(new_seed : float) :
 
 func set_fill_percent(fill : float) :
 	fill_percent = fill
+	$GPUGeneration/Viewport/Sprite.material.set_shader_param("threshold", fill)	
 	if Engine.editor_hint:	
-		$GPUGeneration/Viewport/Sprite.material.set_shader_param("threshold", fill)
 		reset()
 #		if simulate_ca:
 #			yield(VisualServer, "frame_post_draw")	
