@@ -30,9 +30,9 @@ func _process(delta):
 		$Line2D.clear_points()
 		var start_pos : Vector2 = nav.get_closest_point(team_manager.current_member().position)
 		var end_pos : = get_global_mouse_position()
-		$Line2D.add_point(start_pos)
+		$Line2D.add_point(tilemap.map_to_world(tilemap.world_to_map(start_pos))  + tilemap.cell_size/2)
 		for point in nav.get_simple_path(start_pos,end_pos, false):
-			$Line2D.add_point(point)
+			$Line2D.add_point(tilemap.map_to_world(tilemap.world_to_map(point)) + tilemap.cell_size/2)
 
 func _input(event):
 	team_manager.current_member().input(event)

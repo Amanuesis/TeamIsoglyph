@@ -2,6 +2,7 @@ extends TileMap
 
 onready var room_generator : = $RoomGenerator
 
+
 signal room_built
 
 func _ready():
@@ -17,3 +18,4 @@ func load_tiles_from_tex_data(tex_data : Image):
 				set_cell(x,y, 0)
 	room_generator.visible = false
 	emit_signal("room_built")
+	

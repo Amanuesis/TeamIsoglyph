@@ -1,17 +1,17 @@
 [gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
-[ext_resource path="res://Scenes/RoomGenerator.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Util/RoomGenerator.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Room.gd" type="Script" id=3]
 [ext_resource path="res://Util/GlobalCamera.gd" type="Script" id=4]
-[ext_resource path="res://Scenes/TeamManager.gd" type="Script" id=5]
-[ext_resource path="res://Scenes/Party.gd" type="Script" id=6]
-[ext_resource path="res://Scenes/Enemies.gd" type="Script" id=7]
-[ext_resource path="res://Scenes/Player.gd" type="Script" id=8]
-[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Resources/TeamManager.gd" type="Script" id=5]
+[ext_resource path="res://Resources/Party.gd" type="Script" id=6]
+[ext_resource path="res://Resources/Enemies.gd" type="Script" id=7]
+[ext_resource path="res://Entities/Player.gd" type="Script" id=8]
+[ext_resource path="res://Entities/Player.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/POC.gd" type="Script" id=10]
-[ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Scenes/Enemy.gd" type="Script" id=12]
+[ext_resource path="res://Entities/Enemy.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Entities/Enemy.gd" type="Script" id=12]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
@@ -28,7 +28,7 @@ void fragment(){
 [sub_resource type="ShaderMaterial" id=3]
 shader = SubResource( 2 )
 
-[sub_resource type="NavigationPolygon" id=4]
+[sub_resource type="NavigationPolygon" id=6]
 vertices = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
@@ -63,7 +63,7 @@ polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 1/tile_mode = 0
 1/occluder_offset = Vector2( 0, 0 )
 1/navigation_offset = Vector2( 0, 0 )
-1/navigation = SubResource( 4 )
+1/navigation = SubResource( 6 )
 1/shape_offset = Vector2( 0, 0 )
 1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 1/shape_one_way = false
@@ -112,7 +112,7 @@ script = ExtResource( 3 )
 [node name="RoomGenerator" parent="Navigation2D/Room" instance=ExtResource( 2 )]
 show_behind_parent = true
 steps = 3
-fill_percent = 0.371
+fill_percent = 0.345
 random_seed = 1.683
 simulate_ca = true
 
