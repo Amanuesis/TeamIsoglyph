@@ -1,17 +1,13 @@
-extends Node2D
+extends Resource
 class_name Team
 
 export var team_name : String
 export var team_color : Color
+export var tint_members : = false
 
 var team_members : = []
 var current_member_index : = 0
 
-onready var team_manager : = get_parent()
-
-func _ready():
-	for child in get_children():
-		register_team_member(child)
 
 func start_turn():
 	for member in team_members:
@@ -30,16 +26,21 @@ func defeated():
 			return false
 	return true
 	
-func current_member():
-	var team_member: = get_child(current_member_index)
-	if team_member.can_act != true:
-		team_member = next_member()
-	return team_member
+func current_member() -> Entity:
+	return team_members[current_member_index] 
 	
-func register_team_member(member:Object):
+func switch_to(member : Entity):
+	current_member_index = team_members.find(member)
+	
+func register_team_member(member:Entity):
 	team_members.append(member)
-	member.modulate = team_color
+	if tint_members:
+		member.modulate = team_color
 	
-func deregister_team_member(member:Object):
+func deregister_team_member(member:Entity):
 	team_members.remove(team_members.find(member))
-	member.modulate = Color.white
+	if tint_members:
+		member.modulate = Color.white
+
+func get_members():
+	return team_members

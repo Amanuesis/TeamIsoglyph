@@ -5,7 +5,7 @@ var primary_focus : = []
 var secondary_focus : = []
 var debug : = true
 var pan_offset : = Vector2.ZERO
-
+var temp_focus : = Target.new()
 
 func _process(delta):
 	global_position = get_center() + (pan_offset / zoom)
@@ -83,9 +83,8 @@ func register_primary_focus(entity):
 		print_debug("Not a valid focus target")
 		assert(false)
 
-func clear_primary_focus(entity):
+func clear_primary_focus():
 	primary_focus = []
-
 
 func register_secondary_focus(entity, focus_radius : float):
 	if entity is Target:
@@ -97,4 +96,16 @@ func register_secondary_focus(entity, focus_radius : float):
 	else:
 		print_debug("Not a valid focus target")
 		assert(false)
-	
+		
+func change_focus(entity):
+	clear_primary_focus()
+	register_primary_focus(entity)
+
+func look_at(target, time : = 0.5):
+	if target is Target:
+		temp_focus = target
+	elif target is Vector2 or target is Object:
+		temp_focus.setup(target)
+	primary_focus.push_front(temp_focus)
+	yield(get_tree().create_timer(time), "timeout")
+	primary_focus.pop_front()

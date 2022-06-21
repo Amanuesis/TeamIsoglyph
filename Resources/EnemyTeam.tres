@@ -4,5 +4,6 @@
 
 [resource]
 script = ExtResource( 1 )
-team_name = ""
+team_name = "EnemyTeam"
 team_color = Color( 1, 0.607843, 0, 1 )
+tint_members = false

@@ -44,7 +44,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Util/Target.gd"
 }, {
-"base": "Node2D",
+"base": "Resource",
 "class": "Team",
 "language": "GDScript",
 "path": "res://Resources/Team.gd"
